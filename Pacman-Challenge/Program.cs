@@ -8,49 +8,27 @@ namespace Pacman_Challenge
 {
     public class Program
     {
-        private string input = @"Dot,Dot,Dot,Dot,Dot,Dot,Dot,Dot,Dot,Dot,Dot";
+        public static string Input { get; set; }
 
-        //needs static void Main(string[] args) since this is a console app
-
-        public Program(string input)
+        static void Main(string[] args)
         {
-            this.input = input;
-        }
-        
-        public int SolvePoints()
-        {
-            var points = 5000;
+            int counter = 0;
+            string line;
 
-            var replaceInput = input.Replace("Dot","10");
-
-            var inputClean = replaceInput.Split(',');
-
-            foreach (var moves in inputClean)
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(@"c:\test.txt");
+            while ((line = file.ReadLine()) != null)
             {
-                var movePoint = moves.Select(move => Convert.ToInt32(move)).ToArray();
-
-                var sum = movePoint.Sum();
-
-                points += sum;
+                System.Console.WriteLine(line);
+                counter++;
             }
 
-            return points;
-
+            file.Close();
+            System.Console.WriteLine("There were {0} lines.", counter);
+            System.Console.ReadLine();
         }
-
-        //public int SolveLives()
-        //{
-            //var livesGained = 0;
-
-            //return livesGained;
-
-        //}
-        
     }
-    //Console.WriteLine($"Total points: {points}, Lives gained: {livesGained}");
 }
-
-
 
 //TODO
 //read input
@@ -62,4 +40,3 @@ namespace Pacman_Challenge
 //track points(start with 5000)
 //track gained lives (start with 0)
 //print to console
-
